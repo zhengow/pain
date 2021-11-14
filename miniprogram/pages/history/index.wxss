@@ -1,0 +1,4 @@
+/* pages/history/index.wxss */
+.action {
+  margin-top: 10px;
+}

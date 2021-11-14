@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/create/index",
+    "pages/history/index",
+    "pages/trash/index"
+  ],
+  "tabBar": {
+    "borderStyle": "black",
+    "list": [{
+      "pagePath": "pages/create/index",
+      "text": "按钮"
+    }, {
+      "pagePath": "pages/history/index",
+      "text": "历史"
+    }, {
+      "pagePath": "pages/trash/index",
+      "text": "回收"
+    }]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

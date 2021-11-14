@@ -1,0 +1,11 @@
+.page-section{
+  margin-bottom: 20%;
+}
+
+.weui-input {
+  margin-top: 30%;
+  border: 1rpx solid #D5D5D6;
+  width: 80%;
+  margin-left: 10%;
+  height: 50px;
+}
