@@ -33,7 +33,10 @@ Page({
       if (value) {
         const pains: Pain[] = []
         for (let i = 1; i <= value; i++) {
-          pains.push(wx.getStorageSync(i.toString()))
+          const pain = wx.getStorageSync(i.toString())
+          if (pain) {
+            pains.push(pain)
+          }
         }
         this.setData({
           pains: pains
@@ -62,12 +65,10 @@ Page({
    */
   update(e: any) {
     const index = e.currentTarget.dataset.index
-    const pain = this.data.pains[index]
+    const pain = wx.getStorageSync(index.toString())
     const thought = this.data.curThought
     pain.thought = thought
-    setPainMain(index + 1, pain)
-    // this.set
-    // console.log(e)
+    setPainMain(index, pain)
   },
   deleteAll() {
     try {
@@ -78,6 +79,15 @@ Page({
     } catch(e) {
       console.error(e)
     }
+  },
+  deleteOne(e: any) {
+    const index = e.currentTarget.dataset.index
+    try {
+      wx.removeStorageSync((index).toString())
+    } catch (e) {
+      console.error(e)
+    }
+    this.renderList()
   },
   onShow() {
     this.renderList()
@@ -90,33 +100,5 @@ Page({
     this.setData({
       pains: []
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
   }
 })

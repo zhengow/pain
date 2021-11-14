@@ -19,6 +19,7 @@ const formatNumber = (n: number) => {
 }
 
 export interface Pain {
+  id: number;
   title: string;
   thought: string;
   time: string;

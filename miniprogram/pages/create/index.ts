@@ -1,7 +1,7 @@
 // index.ts
 // 获取应用实例
 // const app = getApp<IAppOption>()
-import { formatTime, setPainMain } from '../../utils/util'
+import { formatTime, Pain, setPainMain } from '../../utils/util'
 
 Page({
   data: {
@@ -32,7 +32,8 @@ Page({
   },
   submitPain: function () {
     const title = this.data.painTitle;
-    const pain = {
+    const pain: Pain = {
+      id: -1,
       title: title,
       thought: '',
       time: formatTime(new Date())
@@ -40,10 +41,12 @@ Page({
     try {
       const value = wx.getStorageSync('pain_size')
       if (value) {
+        pain.id = value + 1
         setPainMain(value + 1, pain)
         this.setPainSize(value + 1)
       } else {
         this.setPainSize(1)
+        pain.id = 1
         setPainMain(1, pain)
       }
     } catch (e) {
@@ -56,9 +59,11 @@ Page({
       painTitle: ''
     })
     setTimeout(() => {
-      this.setData({
-        disabled: false
-      })
+      if (this.data.painTitle !== ''){
+        this.setData({
+          disabled: false
+        })
+      }
     }, 1000)
   }
 })
