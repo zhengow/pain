@@ -1,7 +1,7 @@
 // index.ts
 // 获取应用实例
 // const app = getApp<IAppOption>()
-import { formatTime, Pain, setPainMain } from '../../utils/util'
+import { formatTime, setPainMain } from '../../utils/util'
 
 Page({
   data: {
@@ -51,6 +51,9 @@ Page({
     }
     this.setData({
       disabled: true
+    })
+    this.setData({
+      painTitle: ''
     })
     setTimeout(() => {
       this.setData({

@@ -1,32 +1,39 @@
 <view wx:if="{{pains.length > 0}}">
   <van-collapse wx:for="{{pains}}" value="{{ activeNames }}" bind:change="onChange">
-  <van-collapse-item title="{{item.title}} {{item.time}}" name="{{index}}">
-    <van-field
-      placeholder="请输入思考"
-      type="textarea"
-      border="{{ false }}"
-      autosize
-      model:value="{{ curThought }}"
-    />
-    <van-row custom-class="action">
-      <van-col offset="6" span="1">
-        <van-button
-          size="small"
-          custom-style="width: 100%"
-          data-index="{{index}}"
-          data-thought="{{curThought}}"
-          bind:click="updateClick"
-        >更新</van-button>
-      </van-col>
-      <van-col offset="6" span="1">
-        <van-button 
-          size="small"
-          custom-style="width: 100%"
-        >删除</van-button>
-      </van-col>
-    </van-row>
-  </van-collapse-item>
-</van-collapse>
+    <van-collapse-item title="{{item.title}} {{item.time}}" name="{{index}}">
+      <van-field
+        custom-style="margin-top: 10px;"
+        placeholder="请输入思考"
+        type="textarea"
+        border="{{ false }}"
+        autosize
+        value="{{ item.thought }}"
+        bind:change="thoughtChange"
+      />
+      <van-row custom-class="action">
+        <van-col offset="6" span="1">
+          <van-button
+            size="small"
+            custom-style="width: 100%"
+            data-index="{{index}}"
+            bind:click="update"
+          >更新</van-button>
+        </van-col>
+        <van-col offset="6" span="1">
+          <van-button 
+            size="small"
+            custom-style="width: 100%"
+          >删除</van-button>
+        </van-col>
+      </van-row>
+    </van-collapse-item>
+  </van-collapse>
+  <van-button
+    custom-class="delete-all-button"
+    size="medium"
+    custom-style="width: 100%"
+    bind:click="deleteAll"
+  >全部删除</van-button>
 </view>
 <view wx:else>
   <van-empty description="No Pain No Gain" />

@@ -1,6 +1,6 @@
 <view class="page-body">
   <view class="page-section">
-    <input class="weui-input" auto-focus bindinput="bindKeyInput"/>
+    <input class="weui-input" value="{{painTitle}}" auto-focus bindinput="bindKeyInput"/>
   </view>
   <view class="page-section">
     <button disabled="{{disabled}}" bindtap="submitPain"> Pain </button>

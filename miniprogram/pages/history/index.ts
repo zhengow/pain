@@ -19,19 +19,20 @@ Page({
     this.setData({
       activeNames: detail,
     });
-    if (detail.length > 0) {
-      this.setData({
-        curThought: this.data.pains[detail[0]].thought
-      })
-    }
+  },
+  thoughtChange(event: any) {
+    this.setData({
+      curThought: event.detail
+    })
   },
 
   renderList: function () {
+    console.log("render")
     try {
       const value = wx.getStorageSync('pain_size')
       if (value) {
         const pains: Pain[] = []
-        for (let i = 1; i < value; i++) {
+        for (let i = 1; i <= value; i++) {
           pains.push(wx.getStorageSync(i.toString()))
         }
         this.setData({
@@ -59,31 +60,27 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  updateClick(e: any) {
+  update(e: any) {
     const index = e.currentTarget.dataset.index
     const pain = this.data.pains[index]
-    const thought = e.currentTarget.dataset.thought
+    const thought = this.data.curThought
     pain.thought = thought
     setPainMain(index + 1, pain)
     // this.set
     // console.log(e)
   },
-  onShow() {
-    console.log('onshow')
+  deleteAll() {
     try {
-      const value = wx.getStorageSync('pain_size')
-      if (value) {
-        const pains: Pain[] = []
-        for (let i = 1; i <= value; i++) {
-          pains.push(wx.getStorageSync(i.toString()))
-        }
-        this.setData({
-          pains: pains
-        })
-      } 
-    } catch (e) {
+      wx.clearStorageSync()
+      this.setData({
+        pains: []
+      })
+    } catch(e) {
       console.error(e)
     }
+  },
+  onShow() {
+    this.renderList()
   },
 
   /**

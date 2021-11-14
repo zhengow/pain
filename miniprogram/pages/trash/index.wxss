@@ -1,1 +1,14 @@
-/* pages/trash/index.wxss */
+/* pages/history/index.wxss */
+.action {
+  margin-top: 10px;
+}
+
+.delete-all-button {
+  border-top-width: 0px !important;
+  border-bottom-width: 0.5px !important;
+  /* margin-top: 10px; */
+}
+
+.thought-area {
+  margin-top: 50px;
+}

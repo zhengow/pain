@@ -12,9 +12,6 @@
     }, {
       "pagePath": "pages/history/index",
       "text": "历史"
-    }, {
-      "pagePath": "pages/trash/index",
-      "text": "回收"
     }]
   },
   "window": {
